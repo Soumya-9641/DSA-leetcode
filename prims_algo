@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include<stdbool.h>
+#define V 5
+#define INF 9999
+
+int main(void) {
+  
+  int G[V][V] = {
+  {0, 4, 0, 5, 2},
+  {4, 0,1, 3, 0},
+  {0, 1, 0, 8, 0},
+  {5, 3, 8, 0, 2},
+  {2, 0, 0, 2, 0}};
+
+  //create a seleted array to find edges
+  int select_arr[V];
+  for(int i=0;i<V;i++){
+    select_arr[i] = false;
+  }
+  int no_edge = 0;//count the number of edges
+  select_arr[0]=true;//set root node as visited
+    
+  
+  
+  printf("Edge : Weight\n");
+  while(no_edge<V-1){
+    int x,y;//row and col
+    int min = INF;
+    for(int i=0;i<V;i++){
+      if(select_arr[i]){
+        for(int j=0;j<V;j++){
+          if(!select_arr[j] && G[i][j]){
+            if(min>G[i][j]){
+              min= G[i][j];
+              x=i;
+              y=j;
+            }
+          }
+        }
+      }
+    }
+    printf("%d-%d : %d\n",x,y,G[x][y]);
+    select_arr[y] = true;
+    no_edge++;
+  }
+  return 0;
+}
