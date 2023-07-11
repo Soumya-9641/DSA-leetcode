@@ -5,8 +5,12 @@ public:
         if(k==0)
             return true;
         
-        if(idx==0)
-            return nums[0]==k;
+        if(idx==0){
+            if( nums[0]==k)
+                return true;
+            return false;
+        }
+            
         if(dp[idx][k]!=-1)
             return dp[idx][k];
         bool notake = ans(nums,idx-1,k,dp);
